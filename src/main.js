@@ -59,6 +59,9 @@ let string1 = `
         margin-top: 1em;
         font-size: 2em;
     }
+     /*
+    *如果是手机，还是改回来吧
+    **/
     @media (max-width:500px){
         #text{
             margin-top: 0.5em;
@@ -87,6 +90,7 @@ let string1 = `
         background: white;
     }
     /*画出阴阳鱼的阴鱼
+    *手机看别着急呀
     **/
     #bagua>div:nth-child(3){
         position: absolute;
@@ -97,6 +101,9 @@ let string1 = `
         border-radius: 50%;
         background: black;
     }
+    /*
+    *来啦来啦
+    **/
     @media (max-width:500px){
         #bagua>div:nth-child(3){
         width: 100px;
@@ -105,7 +112,7 @@ let string1 = `
         }
     }
     /*再画出阴阳鱼的阳鱼
-    *别给阳鱼点上鱼眼
+    *手机看别着急呀
     **/
     #bagua>div:nth-child(4){
         position: absolute;
@@ -137,6 +144,9 @@ let string1 = `
         border-radius: 50%;
         background: white;
     }
+    /*
+    *来啦来啦
+    **/
     @media (max-width:500px){
         #bagua>div:nth-child(5){
         width: 25px;
