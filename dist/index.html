@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>Document</title>
+</head>
+<body>
+    <div id="html"></div>
+    <div id="wrapper">
+    <div id="div1">
+        <div id="bagua-wrapper">
+            <div id="bagua">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>  
+            <div id="text">道可道，非常道</div> 
+        </div>
+    </div>
+    </div>
+    <style>
+        #bagua{
+            width: 400px;
+            height: 400px;  
+        }
+        @media (max-width:500px){
+            #bagua{
+                width: 200px;
+                height: 200px;
+            }
+        }
+        #div1{
+            position: fixed;
+            right: 30px;
+            top: 20px;
+            word-break: break-all;
+        }
+        @media (max-width:500px) {
+            #html{
+                height: 50vh;
+                overflow: auto;
+            }
+            #wrapper{
+                height:50vh;
+            }
+            #div1{
+                position: relative;
+                top: 0;
+                right: 0;
+            }
+        }
+    
+</style> 
+    <style id="style"></style>
+    <script src="/index.fef1cfaf.js"></script>
+    
+</body>
+</html>
