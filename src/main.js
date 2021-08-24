@@ -7,7 +7,6 @@ let string1 = `
     *首先先去掉烦人的内边距和外边距
     *再设置盒模型定为border-box
     **/
-
     *{
         box-sizing: border-box;
         padding: 0;
@@ -36,12 +35,13 @@ let string1 = `
     *先加点阴影好人让您看见
     **/
     #bagua{
-        border-radius: 50%;
         position: relative;
         overflow: hidden;
-        animation: xz 5s  linear infinite;
         -webkit-box-shadow: 0px 0px 34px 1px rgba(117,117,117,1);
         box-shadow: 0px 0px 34px 1px rgba(117,117,117,1);
+        border-radius: 50%;
+        animation: xz 5s  linear infinite;
+       
     }
     /*也不知道您用什么设备看的
     *兼容一下手机吧
@@ -64,42 +64,41 @@ let string1 = `
     **/
     @media (max-width:500px){
         #text{
-            margin-top: 0.5em;
             font-size: 1em;
+            margin-top: 0.5em;
         }
     }
     /*开始上色
     *把半个圆涂成黑色先
     **/
     #bagua>div:nth-child(1){
-        width: 50%;
-        height: 100%;
         position: absolute;
-        left: 0;
         background: black;
+        width: 50%;
+        height: 100%; 
+        left: 0;
     }
     /*
     *再把另一边涂成白色
     **/
     #bagua>div:nth-child(2){
-        
-        width: 50%;
-        height: 100%;
         position: absolute;
-        right: 0;
         background: white;
+        width: 50%;
+        height: 100%;        
+        right: 0;
     }
     /*画出阴阳鱼的阴鱼
     *手机看别着急呀
     **/
     #bagua>div:nth-child(3){
         position: absolute;
+        background: black;
         width: 200px;
         height: 200px;
         left: 50%;
         margin-left: -100px;
         border-radius: 50%;
-        background: black;
     }
     /*
     *来啦来啦
@@ -115,6 +114,7 @@ let string1 = `
     *手机看别着急呀
     **/
     #bagua>div:nth-child(4){
+        background: white; 
         position: absolute;
         width: 200px;
         height: 200px;
@@ -122,8 +122,10 @@ let string1 = `
         bottom: 0%;
         margin-right: -100px;   
         border-radius: 50%;
-        background: white; 
     }
+    /*
+    *来啦来啦
+    **/
     @media (max-width:500px){
         #bagua>div:nth-child(4){
         width: 100px;
@@ -134,15 +136,15 @@ let string1 = `
     /*
     *给阴鱼点上鱼眼
     **/
-    #bagua>div:nth-child(5){
+    #bagua>div:nth-child(5){      
         position: absolute;
+        background: white;
         width: 50px;
         height: 50px;
         left: 50%;
         top: 75px;
         margin-left: -25px;
         border-radius: 50%;
-        background: white;
     }
     /*
     *来啦来啦
@@ -161,14 +163,17 @@ let string1 = `
     **/
     #bagua>div:nth-child(6){   
         position: absolute;
+        background: black;
         width: 50px;
         height: 50px;
         left: 50%;
         bottom: 75px;
         margin-left: -25px;
         border-radius: 50%;
-        background: black;
     }
+    /*
+    *来啦来啦
+    **/
     @media (max-width:500px){
         #bagua>div:nth-child(6){
             width: 25px;
@@ -182,12 +187,12 @@ let string1 = `
     *居中展示吧
     **/
     #bagua-wrapper{  
-        height: 100vh; 
         /* viewpoint height */
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        height: 100vh; 
     }
 `;
 let string2 = "";
