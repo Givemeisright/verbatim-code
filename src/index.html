@@ -1,62 +1,181 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
     <title>画个太极</title>
 </head>
+
 <body>
-    <div id="html"></div>
-    <div id="wrapper">
-    <div id="div1">
-        <div id="bagua-wrapper">
-            <div id="bagua">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>  
-            <div id="text">道可道，非常道</div> 
+    <canvas id="my_canvas">
+    </canvas>
+    <div class="content-wrapper">
+        <div id="buttons">
+            <button id="btnPause">暂停</button>
+            <button id="btnPlay">播放</button>
+            <button id="btnSlow">慢速</button>
+            <button id="btnNormal">正常速</button>
+            <button id="btnFast">快速</button>
+        </div>
+        <div id="html"></div>
+        <div id="wrapper">
+            <div id="div1">
+                <div id="bagua-wrapper">
+                    <div id="bagua">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div id="text">道可道，非常道</div>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
     <style>
-        #bagua{
-            width: 400px;
-            height: 400px;  
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin-top: 0;
+            margin-bottom: 0;
         }
-        @media (max-width:500px){
-            #bagua{
+
+        #my_canvas {
+            position: fixed;
+            left: 0;
+        }
+
+        .content-wrapper {
+            position: absolute;
+            margin-left: 10px;
+            height: 100%;
+            width: 100%;
+        }
+
+        #html {
+            height: 100vh;
+            overflow: auto;
+            padding: 50px;
+            margin: 0px 10px;
+            color: rgba(0,255,0,1);
+
+        }
+
+        #buttons {
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            display: flex;
+            flex-direction: row;
+            margin-top: 10px;
+            z-index: 5;
+            justify-content: center
+        }
+        #text{
+            display:none;
+        }
+        #buttons>button {
+            padding: 4px 8px;
+            margin-left: 10px;
+            background: black;
+            color: rgba(0,255,0,1);
+            border: rgba(0,255,0,1) 1px solid;
+        }
+
+        #bagua {
+            width: 400px;
+            height: 400px;
+        }
+
+        @media (max-width:500px) {
+            #bagua {
                 width: 200px;
                 height: 200px;
             }
+
+            #buttons {
+                position: fixed;
+                width: auto;
+                right: 0;
+                top: 0;
+                display: flex;
+                flex-direction: column;
+                margin-top: 10px;
+                margin-right: 10px;
+                z-index: 5;
+            }
+
+            #buttons>button {
+                margin-bottom: 10px;
+                padding: 4px 8px;
+            }
         }
-        #div1{
+
+        #div1 {
             position: fixed;
             right: 30px;
             top: 20px;
             word-break: break-all;
         }
+
         @media (max-width:500px) {
-            #html{
+            #html {
                 height: 50vh;
                 overflow: auto;
             }
-            #wrapper{
-                height:50vh;
+
+            #wrapper {
+                height: 50vh;
             }
-            #div1{
+
+            #div1 {
                 position: relative;
                 top: 0;
                 right: 0;
             }
         }
-    </style> 
+    </style>
     <style id="style"></style>
     <script src="main.js"></script>
-    
+    <script type="text/javascript">
+        var c = document.getElementById("my_canvas");
+        var ctx = c.getContext("2d");
+
+        c.height = window.innerHeight;
+        c.width = window.innerWidth;
+
+        var texts = "01";
+        texts = texts.split("");
+
+        var font_size = 16;
+        var columns = c.width / font_size;
+        var drops = [];
+        for (var x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+
+        function draw() {
+
+            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+            ctx.fillRect(0, 0, c.width, c.height*10);
+            ctx.fillStyle = "rgba(10,255,30,0.5)"; //green text
+            ctx.font = font_size + "px arial";
+            for (var i = 0; i < drops.length; i++) {
+                var text = texts[Math.floor(Math.random() * texts.length)];
+                ctx.fillText(text, i * font_size, drops[i] * font_size);
+                if (drops[i] * font_size > c.height || Math.random() > 0.95)
+                    drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(draw, 80);
+    </script>
 </body>
+
 </html>

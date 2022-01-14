@@ -1,5 +1,7 @@
+
 let html = document.querySelector("#html");
 let style = document.querySelector("#style");
+
 let string1 = `
     /*您好，我是梁旭光
     *我最近在学习CSS绘画
@@ -7,28 +9,10 @@ let string1 = `
     *首先先去掉烦人的内边距和外边距
     *再设置盒模型定为border-box
     **/
-    *{
+    #wrapper *{
         box-sizing: border-box;
         padding: 0;
         margin: 0; 
-    }
-    /*背景太白啦
-    *让我改改颜色，灰色就挺好
-    **/
-    body{
-        background: lightgray;
-    }
-    /*我画的还是个会动的哩
-    *来，让图形转起来
-    *当然现在还看不到hh
-    **/
-    @keyframes xz{
-        from{
-            transform: rotate(0deg);
-        }
-        to{
-            transform: rotate(360deg);
-        }
     }
     /*我打算画个八卦
     *所以它得是个圆的
@@ -51,13 +35,6 @@ let string1 = `
             width: 200px;
             height: 200px;
         }
-    }
-    /*
-    *字体太小了改大点
-    **/
-    #text{
-        margin-top: 1em;
-        font-size: 2em;
     }
      /*
     *如果是手机，还是改回来吧
@@ -183,6 +160,17 @@ let string1 = `
             margin-left: -12.5px;
         }
     }
+    /*我画的还是个会动的哩
+    *来，让图形转起来
+    **/
+    @keyframes xz{
+        from{
+            transform: rotate(0deg);
+        }
+        to{
+            transform: rotate(360deg);
+        }
+    }
     /*控制一下显示格式
     *居中展示吧
     **/
@@ -194,29 +182,65 @@ let string1 = `
         flex-direction: column;
         height: 100vh; 
     }
+    /*
+    *写点字把
+    **/
+    #text{
+        display:block;
+        color:#0f0;
+        margin-top: 1em;
+        font-size: 2em;
+    }
 `;
 let string2 = "";
-let n = 0;
-
-let steps = () => {
-    setTimeout(() => {
+let n = 1;
+let time = 100
+const run=() => {
+        n+=1
+        if(n>string1.length){
+            window.clearInterval(id)
+            return
+        }
         if (string1[n] === "\n") {
             string2 += "<br>"
-        } else if (string1[n] === " ") {
-            string2 += "&nbsp"
-        } else {
+            n+=4
+        }else {
             string2 += string1[n]
         }
         //将回车变成html中的<br>
-        html.innerHTML = string2;
         style.innerHTML = string1.substring(0, n);
-        window.scrollTo(0, 9999);
-        html.scrollTo(0, 9999);
-        if (n < string1.length - 1) {
-            steps();
-            n += 1;
-        }
-    }, 50); //设置变化时间
-};
 
-steps();
+        html.innerHTML = string2.substring(0, n);
+        window.scrollTo(0,99999);
+        html.scrollTo(0,99999);
+}
+const play =()=>{
+   return setInterval(run,time)
+}
+let id = play()
+
+btnPause.onclick=()=>{
+    window.clearInterval(id)
+}
+
+btnPlay.onclick=()=>{
+    id = play()
+}
+
+btnSlow.onclick=()=>{
+    window.clearInterval(id)
+    time=200
+    id = play()
+}
+
+btnNormal.onclick=()=>{
+    window.clearInterval(id)
+    time = 100
+    id = play()
+}
+
+btnFast.onclick=()=>{
+    window.clearInterval(id)
+    time = 20
+    id = play()
+}
